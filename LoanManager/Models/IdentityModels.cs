@@ -32,5 +32,7 @@ namespace LoanManager.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Asset> Assets { get; set; }
     }
 }
