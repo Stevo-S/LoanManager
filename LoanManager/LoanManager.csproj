@@ -217,6 +217,10 @@
     <Compile Include="Migrations\201602031202039_AddBorrowers.Designer.cs">
       <DependentUpon>201602031202039_AddBorrowers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602031220219_AddBorrowerToAssets.cs" />
+    <Compile Include="Migrations\201602031220219_AddBorrowerToAssets.Designer.cs">
+      <DependentUpon>201602031220219_AddBorrowerToAssets.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Asset.cs" />
@@ -310,6 +314,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602031202039_AddBorrowers.resx">
       <DependentUpon>201602031202039_AddBorrowers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602031220219_AddBorrowerToAssets.resx">
+      <DependentUpon>201602031220219_AddBorrowerToAssets.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

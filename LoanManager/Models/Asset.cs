@@ -11,5 +11,8 @@ namespace LoanManager.Models
         public string Description { get; set; }
         public decimal Value { get; set; }
         public string LogBookId { get; set; }
+        public int BorrowerId { get; set; }
+
+        public virtual Borrower Borrower { get; set; }
     }
 }
