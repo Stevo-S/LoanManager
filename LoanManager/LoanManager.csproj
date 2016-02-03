@@ -221,11 +221,16 @@
     <Compile Include="Migrations\201602031220219_AddBorrowerToAssets.Designer.cs">
       <DependentUpon>201602031220219_AddBorrowerToAssets.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602031308349_AddLoan.cs" />
+    <Compile Include="Migrations\201602031308349_AddLoan.Designer.cs">
+      <DependentUpon>201602031308349_AddLoan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Asset.cs" />
     <Compile Include="Models\Borrower.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Loan.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -317,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602031220219_AddBorrowerToAssets.resx">
       <DependentUpon>201602031220219_AddBorrowerToAssets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602031308349_AddLoan.resx">
+      <DependentUpon>201602031308349_AddLoan.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
