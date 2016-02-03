@@ -229,6 +229,10 @@
     <Compile Include="Migrations\201602031336054_AddTransactionType.Designer.cs">
       <DependentUpon>201602031336054_AddTransactionType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602031351515_AddTransaction.cs" />
+    <Compile Include="Migrations\201602031351515_AddTransaction.Designer.cs">
+      <DependentUpon>201602031351515_AddTransaction.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Asset.cs" />
@@ -236,6 +240,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Loan.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\TransactionType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -333,6 +338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602031336054_AddTransactionType.resx">
       <DependentUpon>201602031336054_AddTransactionType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602031351515_AddTransaction.resx">
+      <DependentUpon>201602031351515_AddTransaction.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
