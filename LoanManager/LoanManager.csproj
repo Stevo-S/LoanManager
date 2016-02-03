@@ -233,10 +233,15 @@
     <Compile Include="Migrations\201602031351515_AddTransaction.Designer.cs">
       <DependentUpon>201602031351515_AddTransaction.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602031600141_AddDuePayments.cs" />
+    <Compile Include="Migrations\201602031600141_AddDuePayments.Designer.cs">
+      <DependentUpon>201602031600141_AddDuePayments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Asset.cs" />
     <Compile Include="Models\Borrower.cs" />
+    <Compile Include="Models\DuePayment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Loan.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -341,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602031351515_AddTransaction.resx">
       <DependentUpon>201602031351515_AddTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602031600141_AddDuePayments.resx">
+      <DependentUpon>201602031600141_AddDuePayments.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
