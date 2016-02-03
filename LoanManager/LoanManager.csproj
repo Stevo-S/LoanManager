@@ -237,6 +237,10 @@
     <Compile Include="Migrations\201602031600141_AddDuePayments.Designer.cs">
       <DependentUpon>201602031600141_AddDuePayments.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602031718191_AddTimestampsToBorrowerAndAsset.cs" />
+    <Compile Include="Migrations\201602031718191_AddTimestampsToBorrowerAndAsset.Designer.cs">
+      <DependentUpon>201602031718191_AddTimestampsToBorrowerAndAsset.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Asset.cs" />
@@ -349,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602031600141_AddDuePayments.resx">
       <DependentUpon>201602031600141_AddDuePayments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602031718191_AddTimestampsToBorrowerAndAsset.resx">
+      <DependentUpon>201602031718191_AddTimestampsToBorrowerAndAsset.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

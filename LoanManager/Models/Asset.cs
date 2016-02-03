@@ -13,6 +13,10 @@ namespace LoanManager.Models
         public string LogBookId { get; set; }
         public int BorrowerId { get; set; }
 
+        public DateTime CreatedAt { get; set; }
+        public DateTime ModifiedAt { get; set; }
+
         public virtual Borrower Borrower { get; set; }
+
     }
 }
