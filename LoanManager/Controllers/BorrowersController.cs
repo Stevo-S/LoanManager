@@ -48,6 +48,9 @@ namespace LoanManager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,NationalID,FirstName,MiddleName,LastName,Email,PhoneNumber1,PhoneNumber2,Address,CreatedAt,ModifiedAt")] Borrower borrower)
         {
+            borrower.CreatedAt = DateTime.Now;
+            borrower.ModifiedAt = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 db.Borrowers.Add(borrower);
@@ -80,6 +83,8 @@ namespace LoanManager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,NationalID,FirstName,MiddleName,LastName,Email,PhoneNumber1,PhoneNumber2,Address,CreatedAt,ModifiedAt")] Borrower borrower)
         {
+            borrower.ModifiedAt = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 db.Entry(borrower).State = EntityState.Modified;
