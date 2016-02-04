@@ -50,6 +50,9 @@ namespace LoanManager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Description,Value,LogBookId,BorrowerId,CreatedAt,ModifiedAt")] Asset asset)
         {
+            asset.CreatedAt = DateTime.Now;
+            asset.ModifiedAt = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 db.Assets.Add(asset);
@@ -84,6 +87,8 @@ namespace LoanManager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Description,Value,LogBookId,BorrowerId,CreatedAt,ModifiedAt")] Asset asset)
         {
+            asset.ModifiedAt = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 db.Entry(asset).State = EntityState.Modified;
