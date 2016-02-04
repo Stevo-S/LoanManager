@@ -50,6 +50,8 @@ namespace LoanManager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Principal,Interest,Date,Cleared,AssetId")] Loan loan)
         {
+            loan.Date = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 db.Loans.Add(loan);
