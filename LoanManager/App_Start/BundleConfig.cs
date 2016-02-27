@@ -26,6 +26,8 @@ namespace LoanManager
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/gridmvc").Include("~/Scripts/gridmvc.min.js"));
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LoanManager.Models;
+using System.Transactions;
 
 namespace LoanManager.Controllers
 {
@@ -39,7 +40,7 @@ namespace LoanManager.Controllers
         // GET: Loans/Create
         public ActionResult Create()
         {
-            ViewBag.AssetId = new SelectList(db.Assets, "Id", "Description");
+            ViewBag.AssetId = new SelectList(db.Assets, "Id", "AssetName");
             return View();
         }
 
@@ -50,16 +51,43 @@ namespace LoanManager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Principal,Interest,Date,Cleared,AssetId")] Loan loan)
         {
-            loan.Date = DateTime.Now;
-
             if (ModelState.IsValid)
             {
-                db.Loans.Add(loan);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try {
+                    using (TransactionScope trans = new TransactionScope())
+                    {
+                        db.Loans.Add(loan);
+                        Models.Transaction transaction = new Models.Transaction()
+                        {
+
+                            Loan = loan,
+                            Balance = loan.Principal + loan.Interest,
+                            Credit = 0,
+                            Debit = loan.Principal + loan.Interest,
+                            Details = "Loan Disbursement",
+                            Timestamp = loan.Date,
+                            Type = db.TransactionTypes.First(t => t.Description == "Loan Disbursement"),
+                        };
+                        db.Transactions.Add(transaction);
+
+                        DuePayment duepayment = new DuePayment()
+                        {
+                            Amount = transaction.Balance,
+                            DueDate = loan.Date,
+                            Loan = loan
+                        };
+                        db.DuePayments.Add(duepayment);
+
+                        db.SaveChanges();
+                        trans.Complete();
+                    }
+                    return RedirectToAction("Index");
+                }
+                catch(Exception ex)
+                { }
             }
 
-            ViewBag.AssetId = new SelectList(db.Assets, "Id", "Description", loan.AssetId);
+            ViewBag.AssetId = new SelectList(db.Assets, "Id", "AssetName", loan.AssetId);
             return View(loan);
         }
 
@@ -75,7 +103,7 @@ namespace LoanManager.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AssetId = new SelectList(db.Assets, "Id", "Description", loan.AssetId);
+            ViewBag.AssetId = new SelectList(db.Assets, "Id", "AssetName", loan.AssetId);
             return View(loan);
         }
 
@@ -92,7 +120,7 @@ namespace LoanManager.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AssetId = new SelectList(db.Assets, "Id", "Description", loan.AssetId);
+            ViewBag.AssetId = new SelectList(db.Assets, "Id", "AssetName", loan.AssetId);
             return View(loan);
         }
 
