@@ -17,9 +17,9 @@ namespace LoanManager.Models
         [Required]
         public string Details { get; set; }
         [DisplayFormat(DataFormatString = "{0:C0}")]
-        public decimal? Credit { get; set; }
+        public decimal Credit { get; set; }
         [DisplayFormat(DataFormatString = "{0:C0}")]
-        public decimal? Debit { get; set; }
+        public decimal Debit { get; set; }
         [Required]
         [Display(Name = "Loan Balance")]
         [DisplayFormat(DataFormatString = "{0:C0}")]
@@ -27,10 +27,6 @@ namespace LoanManager.Models
         [Required]
         public DateTime Timestamp { get; set; }
 
-        public Transaction()
-        {
-            Timestamp = DateTime.Now;
-        }
 
         public virtual TransactionType Type { get; set; }
         public virtual Loan Loan { get; set; }

@@ -53,6 +53,7 @@ namespace LoanManager.Controllers
         {
             if (ModelState.IsValid)
             {
+                transaction.Timestamp = DateTime.Now;
                 db.Transactions.Add(transaction);
                 db.SaveChanges();
                 return RedirectToAction("Index");
