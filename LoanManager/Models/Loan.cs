@@ -31,9 +31,11 @@ namespace LoanManager.Models
         public Loan()
         {
             Transactions = new List<Transaction>();
+            DuePayments = new List<DuePayment>();
         }
 
         public virtual Asset Asset { get; set; }
         public virtual ICollection<Transaction> Transactions { get; set; }
+        public virtual ICollection<DuePayment> DuePayments { get; set; }
     }
 }
