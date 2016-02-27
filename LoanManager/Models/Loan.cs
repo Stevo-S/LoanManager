@@ -23,7 +23,9 @@ namespace LoanManager.Models
         [Remote("IsAsset_Encumbered", "Validation")]
         public int AssetId { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
         public DateTime CreatedAt { get; set; }
+        [HiddenInput(DisplayValue = false)]
         public DateTime ModifiedAt { get; set; }
 
         public Loan()
