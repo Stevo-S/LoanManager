@@ -28,7 +28,6 @@
     .RenderValueAs(c => new HtmlString(Html.ActionLink(c.Asset.AssetName, "Details", "Assets", new { id = c.AssetId }, null).ToString()));
     columns.Add(c => c.Principal).Format("{0:C0}").Titled("Principal");
     columns.Add(c => c.Interest).Format("{0:C0}").Titled("Interest");
-    columns.Add(c => c.Date).Format("{0:dd/MM/yyyy}").Titled("Due Date");
     columns.Add(c => c.Cleared).Titled("Cleared");
     columns.Add()
     .Encoded(false)
