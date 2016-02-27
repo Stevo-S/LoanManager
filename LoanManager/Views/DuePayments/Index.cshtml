@@ -1,0 +1,36 @@
+﻿@model IEnumerable<LoanManager.Models.DuePayment>
+
+@using GridMvc.Html
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+<script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>
+
+<div class="code-cut">
+    @Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(c => c.Loan.Id).Titled("LoanId").Filterable(true)
+    .Encoded(false)
+    .Sanitized(false)
+    .RenderValueAs(c => new HtmlString(Html.ActionLink(c.LoanId.ToString(), "Details", "Loans", new { id = c.LoanId}, null).ToString()));
+    columns.Add(c => c.DueDate).Titled("Due Date").Filterable(true);
+    columns.Add(c => c.Amount).Format("{0:C0}").Titled("Amount");
+    columns.Add()
+    .Encoded(false)
+    .Sanitized(false)
+    .RenderValueAs(o => new HtmlString(Html.ActionLink("Edit", "Edit", new { id = o.Id }).ToString() + " | " +
+                                    Html.ActionLink("Details", "Details", new { id = o.Id }).ToString() + " | " +
+                                    Html.ActionLink("Delete", "Delete", new { id = o.Id }).ToString()));
+
+}).WithPaging(10).Sortable(true)
+</div>
