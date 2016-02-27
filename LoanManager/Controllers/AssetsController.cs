@@ -39,7 +39,7 @@ namespace LoanManager.Controllers
         // GET: Assets/Create
         public ActionResult Create()
         {
-            ViewBag.BorrowerId = new SelectList(db.Borrowers, "Id", "NationalID");
+            ViewBag.BorrowerId = new SelectList(db.Borrowers, "Id", "FullName");
             return View();
         }
 
@@ -48,11 +48,8 @@ namespace LoanManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Description,Value,LogBookId,BorrowerId,CreatedAt,ModifiedAt")] Asset asset)
+        public ActionResult Create([Bind(Include = "Id,LogBookId,RegistrationNo,Description,Value,BorrowerId")] Asset asset)
         {
-            asset.CreatedAt = DateTime.Now;
-            asset.ModifiedAt = DateTime.Now;
-
             if (ModelState.IsValid)
             {
                 db.Assets.Add(asset);
@@ -76,7 +73,7 @@ namespace LoanManager.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.BorrowerId = new SelectList(db.Borrowers, "Id", "NationalID", asset.BorrowerId);
+            ViewBag.BorrowerId = new SelectList(db.Borrowers, "Id", "FullName", asset.BorrowerId);
             return View(asset);
         }
 
@@ -85,11 +82,11 @@ namespace LoanManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Description,Value,LogBookId,BorrowerId,CreatedAt,ModifiedAt")] Asset asset)
+        public ActionResult Edit([Bind(Include = "Id,LogBookId,RegistrationNo,Description,Value,BorrowerId,CreatedAt,ModifiedAt")] Asset asset)
         {
-            asset.ModifiedAt = DateTime.Now;
             if (ModelState.IsValid)
             {
+                asset.ModifiedAt = DateTime.Now;
                 db.Entry(asset).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

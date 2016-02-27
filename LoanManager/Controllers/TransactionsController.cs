@@ -10,108 +10,116 @@ using LoanManager.Models;
 
 namespace LoanManager.Controllers
 {
-    public class BorrowersController : Controller
+    public class TransactionsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Borrowers
+        // GET: Transactions
         public ActionResult Index()
         {
-            return View(db.Borrowers.ToList());
+            var transactions = db.Transactions.Include(t => t.Loan).Include(t => t.Type);
+            return View(transactions.ToList());
         }
 
-        // GET: Borrowers/Details/5
+        // GET: Transactions/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Borrower borrower = db.Borrowers.Where(b => b.Id == id).Include(b => b.Assets).FirstOrDefault();
-            if (borrower == null)
+            Transaction transaction = db.Transactions.Find(id);
+            if (transaction == null)
             {
                 return HttpNotFound();
             }
-            return View(borrower);
+            return View(transaction);
         }
 
-        // GET: Borrowers/Create
+        // GET: Transactions/Create
         public ActionResult Create()
         {
+            ViewBag.LoanId = new SelectList(db.Loans, "Id", "Id");
+            ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "Description");
             return View();
         }
 
-        // POST: Borrowers/Create
+        // POST: Transactions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,NationalID,FirstName,MiddleName,LastName,Email,PhoneNumber1,PhoneNumber2,Address,CreatedAt,ModifiedAt")] Borrower borrower)
+        public ActionResult Create([Bind(Include = "Id,TypeId,LoanId,Details,Credit,Debit,Balance,Timestamp")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
-                db.Borrowers.Add(borrower);
+                db.Transactions.Add(transaction);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(borrower);
+            ViewBag.LoanId = new SelectList(db.Loans, "Id", "Id", transaction.LoanId);
+            ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "Description", transaction.TypeId);
+            return View(transaction);
         }
 
-        // GET: Borrowers/Edit/5
+        // GET: Transactions/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Borrower borrower = db.Borrowers.Find(id);
-            if (borrower == null)
+            Transaction transaction = db.Transactions.Find(id);
+            if (transaction == null)
             {
                 return HttpNotFound();
             }
-            return View(borrower);
+            ViewBag.LoanId = new SelectList(db.Loans, "Id", "Id", transaction.LoanId);
+            ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "Description", transaction.TypeId);
+            return View(transaction);
         }
 
-        // POST: Borrowers/Edit/5
+        // POST: Transactions/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,NationalID,FirstName,MiddleName,LastName,Email,PhoneNumber1,PhoneNumber2,Address,CreatedAt,ModifiedAt")] Borrower borrower)
+        public ActionResult Edit([Bind(Include = "Id,TypeId,LoanId,Details,Credit,Debit,Balance,Timestamp")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
-                borrower.ModifiedAt = DateTime.Now;
-                db.Entry(borrower).State = EntityState.Modified;
+                db.Entry(transaction).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(borrower);
+            ViewBag.LoanId = new SelectList(db.Loans, "Id", "Id", transaction.LoanId);
+            ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "Description", transaction.TypeId);
+            return View(transaction);
         }
 
-        // GET: Borrowers/Delete/5
+        // GET: Transactions/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Borrower borrower = db.Borrowers.Find(id);
-            if (borrower == null)
+            Transaction transaction = db.Transactions.Find(id);
+            if (transaction == null)
             {
                 return HttpNotFound();
             }
-            return View(borrower);
+            return View(transaction);
         }
 
-        // POST: Borrowers/Delete/5
+        // POST: Transactions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Borrower borrower = db.Borrowers.Find(id);
-            db.Borrowers.Remove(borrower);
+            Transaction transaction = db.Transactions.Find(id);
+            db.Transactions.Remove(transaction);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

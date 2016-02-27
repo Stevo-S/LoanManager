@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GridMvc, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grid.Mvc.3.0.0\lib\net40\GridMvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -80,6 +84,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -198,10 +203,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AssetsController.cs" />
     <Compile Include="Controllers\BorrowersController.cs" />
+    <Compile Include="Controllers\DuePaymentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoansController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="Controllers\TransactionTypesController.cs" />
+    <Compile Include="Controllers\ValidationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -245,6 +253,10 @@
     <Compile Include="Migrations\201602031718191_AddTimestampsToBorrowerAndAsset.Designer.cs">
       <DependentUpon>201602031718191_AddTimestampsToBorrowerAndAsset.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602241532191_AddDataAnnotationsAndUpdateAccountViewModel.cs" />
+    <Compile Include="Migrations\201602241532191_AddDataAnnotationsAndUpdateAccountViewModel.Designer.cs">
+      <DependentUpon>201602241532191_AddDataAnnotationsAndUpdateAccountViewModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Asset.cs" />
@@ -261,6 +273,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Gridmvc.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -272,7 +285,11 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Grid.mvc.readme" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\gridmvc.js" />
+    <Content Include="Scripts\gridmvc.lang.ru.js" />
+    <Content Include="Scripts\gridmvc.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -310,19 +327,23 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Home\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Home\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Home\Manage\Index.cshtml" />
+    <Content Include="Views\Home\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Home\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Home\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\TransactionTypes\Create.cshtml" />
+    <Content Include="Views\TransactionTypes\Delete.cshtml" />
+    <Content Include="Views\TransactionTypes\Details.cshtml" />
+    <Content Include="Views\TransactionTypes\Edit.cshtml" />
+    <Content Include="Views\TransactionTypes\Index.cshtml" />
     <Content Include="Views\Borrowers\Create.cshtml" />
     <Content Include="Views\Borrowers\Delete.cshtml" />
     <Content Include="Views\Borrowers\Details.cshtml" />
     <Content Include="Views\Borrowers\Edit.cshtml" />
-    <Content Include="Views\Borrowers\Index.cshtml" />
     <Content Include="Views\Assets\Create.cshtml" />
     <Content Include="Views\Assets\Delete.cshtml" />
     <Content Include="Views\Assets\Details.cshtml" />
@@ -333,14 +354,23 @@
     <Content Include="Views\Loans\Details.cshtml" />
     <Content Include="Views\Loans\Edit.cshtml" />
     <Content Include="Views\Loans\Index.cshtml" />
-    <Content Include="Views\TransactionTypes\Create.cshtml" />
-    <Content Include="Views\TransactionTypes\Delete.cshtml" />
-    <Content Include="Views\TransactionTypes\Details.cshtml" />
-    <Content Include="Views\TransactionTypes\Edit.cshtml" />
-    <Content Include="Views\TransactionTypes\Index.cshtml" />
+    <Content Include="Views\Transactions\Create.cshtml" />
+    <Content Include="Views\Transactions\Delete.cshtml" />
+    <Content Include="Views\Transactions\Details.cshtml" />
+    <Content Include="Views\Transactions\Edit.cshtml" />
+    <Content Include="Views\Transactions\Index.cshtml" />
+    <Content Include="Views\DuePayments\Create.cshtml" />
+    <Content Include="Views\DuePayments\Delete.cshtml" />
+    <Content Include="Views\DuePayments\Details.cshtml" />
+    <Content Include="Views\DuePayments\Edit.cshtml" />
+    <Content Include="Views\DuePayments\Index.cshtml" />
+    <Content Include="Views\Shared\_GridPager.cshtml" />
+    <Content Include="Views\Shared\_Grid.cshtml" />
+    <Content Include="Views\Borrowers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Validation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -380,6 +410,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602031718191_AddTimestampsToBorrowerAndAsset.resx">
       <DependentUpon>201602031718191_AddTimestampsToBorrowerAndAsset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602241532191_AddDataAnnotationsAndUpdateAccountViewModel.resx">
+      <DependentUpon>201602241532191_AddDataAnnotationsAndUpdateAccountViewModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

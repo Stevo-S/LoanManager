@@ -12,11 +12,11 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Asset.Description)
+            @Html.DisplayNameFor(model => model.Asset.AssetName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Asset.Description)
+            @Html.ActionLink(Model.Asset.AssetName, "Details", "Assets", new { id = Model.AssetId }, null)
         </dd>
 
         <dt>

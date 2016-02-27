@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<LoanManager.Models.Loan>
 
+@using GridMvc.Html
 @{
     ViewBag.Title = "Index";
 }
@@ -9,49 +10,32 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Asset.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Principal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Interest)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cleared)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Asset.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Principal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Interest)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cleared)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+<script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>
 
-</table>
+<div class="code-cut">
+    @Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(c => c.Id).Titled("Id").Filterable(true);
+    columns.Add(c => c.Asset.AssetName)
+    .Titled("Asset")
+    .Filterable(true)
+    .Encoded(false)
+    .Sanitized(false)
+    .RenderValueAs(c => new HtmlString(Html.ActionLink(c.Asset.AssetName, "Details", "Assets", new { id = c.AssetId }, null).ToString()));
+    columns.Add(c => c.Principal).Format("{0:C0}").Titled("Principal");
+    columns.Add(c => c.Interest).Format("{0:C0}").Titled("Interest");
+    columns.Add(c => c.Date).Format("{0:dd/MM/yyyy}").Titled("Due Date");
+    columns.Add(c => c.Cleared).Titled("Cleared");
+    columns.Add()
+    .Encoded(false)
+    .Sanitized(false)
+    .RenderValueAs(o => new HtmlString(Html.ActionLink("Edit", "Edit", new { id = o.Id }).ToString() + " | " +
+                                    Html.ActionLink("Details", "Details", new { id = o.Id }).ToString() + " | " +
+                                    Html.ActionLink("Delete", "Delete", new { id = o.Id }).ToString()));
+
+}).WithPaging(10).Sortable(true)
+</div>

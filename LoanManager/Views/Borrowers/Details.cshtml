@@ -1,5 +1,5 @@
 ﻿@model LoanManager.Models.Borrower
-
+@using GridMvc.Html
 @{
     ViewBag.Title = "Details";
 }
@@ -75,7 +75,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CreatedAt)
+            @Html.HiddenFor(model => model.CreatedAt)
         </dt>
 
         <dd>
@@ -83,7 +83,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ModifiedAt)
+            @Html.HiddenFor(model => model.ModifiedAt)
         </dt>
 
         <dd>
@@ -91,6 +91,32 @@
         </dd>
 
     </dl>
+</div>
+
+<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+<script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>
+
+<div>
+    @Html.Grid(Model.Assets).Columns(columns =>
+    {
+        columns.Add(c => c.Description).Titled("Description").Filterable(true);
+        columns.Add(c => c.RegistrationNo).Titled("RegistrationNo").Filterable(true);
+        columns.Add(c => c.LogBookId).Titled("LogBook").Filterable(true);
+        columns.Add(c => c.Value).Titled("Value").Format("{0:C0}").Filterable(true);
+        columns.Add(c => c.Borrower.Fullname).Titled("Owner").Filterable(true)
+        .Encoded(false)
+        .Sanitized(false)
+        .RenderValueAs(c => new HtmlString(Html.ActionLink(c.Borrower.Fullname, "Details", "Borrowers", new { id = c.BorrowerId }, null).ToString()));
+        columns.Add()
+        .Encoded(false)
+        .Sanitized(false)
+        .RenderValueAs(o => new HtmlString(Html.ActionLink("Edit", "Edit", new { id = o.Id }).ToString() + " | " +
+                                        Html.ActionLink("Details", "Details", new { id = o.Id }).ToString() + " | " +
+                                        Html.ActionLink("Delete", "Delete", new { id = o.Id }).ToString()));
+
+    })
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
