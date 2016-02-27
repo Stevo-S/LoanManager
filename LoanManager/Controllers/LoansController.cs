@@ -53,6 +53,8 @@ namespace LoanManager.Controllers
         {
             if (ModelState.IsValid)
             {
+                loan.CreatedAt = DateTime.Now;
+                loan.ModifiedAt = DateTime.Now;
                 try {
                     using (TransactionScope trans = new TransactionScope())
                     {
@@ -114,6 +116,7 @@ namespace LoanManager.Controllers
         {
             if (ModelState.IsValid)
             {
+                loan.ModifiedAt = DateTime.Now;
                 db.Entry(loan).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
