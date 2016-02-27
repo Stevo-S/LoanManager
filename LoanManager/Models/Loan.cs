@@ -18,10 +18,6 @@ namespace LoanManager.Models
         [DisplayFormat(DataFormatString = "{0:C0}")]
         public decimal Interest { get; set; }
         [Required]
-        [DisplayName("Due Date")]
-        [DataType(DataType.Date)]
-        public DateTime Date { get; set; }
-        [Required]
         [ReadOnly(true)]
         public bool Cleared { get; set; }
         [Remote("IsAsset_Encumbered", "Validation")]

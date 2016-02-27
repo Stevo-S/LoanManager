@@ -261,6 +261,10 @@
     <Compile Include="Migrations\201602271640208_AddPaidFlagToDuePayment.Designer.cs">
       <DependentUpon>201602271640208_AddPaidFlagToDuePayment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602271711461_RemoveDateColumnFromLoan.cs" />
+    <Compile Include="Migrations\201602271711461_RemoveDateColumnFromLoan.Designer.cs">
+      <DependentUpon>201602271711461_RemoveDateColumnFromLoan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Asset.cs" />
@@ -420,6 +424,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602271640208_AddPaidFlagToDuePayment.resx">
       <DependentUpon>201602271640208_AddPaidFlagToDuePayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602271711461_RemoveDateColumnFromLoan.resx">
+      <DependentUpon>201602271711461_RemoveDateColumnFromLoan.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

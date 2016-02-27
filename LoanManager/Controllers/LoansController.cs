@@ -65,7 +65,6 @@ namespace LoanManager.Controllers
                             Credit = 0,
                             Debit = loan.Principal + loan.Interest,
                             Details = "Loan Disbursement",
-                            Timestamp = loan.Date,
                             Type = db.TransactionTypes.First(t => t.Description == "Loan Disbursement"),
                         };
                         db.Transactions.Add(transaction);
@@ -73,7 +72,6 @@ namespace LoanManager.Controllers
                         DuePayment duepayment = new DuePayment()
                         {
                             Amount = transaction.Balance,
-                            DueDate = loan.Date,
                             Loan = loan
                         };
                         db.DuePayments.Add(duepayment);
