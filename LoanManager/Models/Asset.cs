@@ -35,8 +35,6 @@ namespace LoanManager.Models
         public Asset()
         {
             Loans = new List<Loan>();
-            CreatedAt = DateTime.Now;
-            ModifiedAt = DateTime.Now;
         }
 
         public virtual Borrower Borrower { get; set; }
@@ -48,7 +46,7 @@ namespace LoanManager.Models
         [Display(Name = "Asset")]
         public string AssetName
         {
-            get { return Description + " - " + LogBookId; }
+            get { return Description + " - " + RegistrationNo; }
         }
     }
 }
