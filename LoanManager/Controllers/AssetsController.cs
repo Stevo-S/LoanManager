@@ -52,6 +52,8 @@ namespace LoanManager.Controllers
         {
             if (ModelState.IsValid)
             {
+                asset.CreatedAt = DateTime.Now;
+                asset.ModifiedAt = DateTime.Now;
                 db.Assets.Add(asset);
                 db.SaveChanges();
                 return RedirectToAction("Index");
