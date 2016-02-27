@@ -23,7 +23,6 @@ namespace LoanManager.Models
         [StringLength(20)]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
-        [Required]
         [StringLength(20)]
         [Display(Name = "Middle Name")]
         public string MiddleName { get; set; }
@@ -52,8 +51,6 @@ namespace LoanManager.Models
         public Borrower()
         {
             Assets = new List<Asset>();
-            CreatedAt = DateTime.Now;
-            ModifiedAt = DateTime.Now;
         }
 
         public virtual ICollection<Asset> Assets { get; set; }

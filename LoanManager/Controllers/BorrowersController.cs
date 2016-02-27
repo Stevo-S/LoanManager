@@ -50,6 +50,8 @@ namespace LoanManager.Controllers
         {
             if (ModelState.IsValid)
             {
+                borrower.CreatedAt = DateTime.Now;
+                borrower.ModifiedAt = DateTime.Now;
                 db.Borrowers.Add(borrower);
                 db.SaveChanges();
                 return RedirectToAction("Index");
