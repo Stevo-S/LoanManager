@@ -18,6 +18,8 @@ namespace LoanManager.Models
         [Required]
         public int LoanId { get; set; }
 
+        public bool IsPaid { get; set; }
+
         public virtual Loan Loan { get; set; }
     }
 }
