@@ -273,6 +273,10 @@
     <Compile Include="Migrations\201602271736270_MakeTransactionDebitAndCreditNonNullable.Designer.cs">
       <DependentUpon>201602271736270_MakeTransactionDebitAndCreditNonNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602271854060_SeedTransactionTypes.cs" />
+    <Compile Include="Migrations\201602271854060_SeedTransactionTypes.Designer.cs">
+      <DependentUpon>201602271854060_SeedTransactionTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Asset.cs" />
@@ -313,6 +317,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\loans.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -441,6 +446,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602271736270_MakeTransactionDebitAndCreditNonNullable.resx">
       <DependentUpon>201602271736270_MakeTransactionDebitAndCreditNonNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602271854060_SeedTransactionTypes.resx">
+      <DependentUpon>201602271854060_SeedTransactionTypes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

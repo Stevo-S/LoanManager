@@ -55,36 +55,38 @@ namespace LoanManager.Controllers
             {
                 loan.CreatedAt = DateTime.Now;
                 loan.ModifiedAt = DateTime.Now;
-                try {
-                    using (TransactionScope trans = new TransactionScope())
-                    {
-                        db.Loans.Add(loan);
-                        Models.Transaction transaction = new Models.Transaction()
-                        {
+                //try {
+                //    using (TransactionScope trans = new TransactionScope())
+                //    {
+                //        db.Loans.Add(loan);
+                //        Models.Transaction transaction = new Models.Transaction()
+                //        {
 
-                            Loan = loan,
-                            Balance = loan.Principal + loan.Interest,
-                            Credit = 0,
-                            Debit = loan.Principal + loan.Interest,
-                            Details = "Loan Disbursement",
-                            Type = db.TransactionTypes.First(t => t.Description == "Loan Disbursement"),
-                        };
-                        db.Transactions.Add(transaction);
+                //            Loan = loan,
+                //            Balance = loan.Principal + loan.Interest,
+                //            Credit = 0,
+                //            Debit = loan.Principal + loan.Interest,
+                //            Details = "Loan Disbursement",
+                //            Type = db.TransactionTypes.First(t => t.Description == "Loan Disbursement"),
+                //        };
+                //        db.Transactions.Add(transaction);
 
-                        DuePayment duepayment = new DuePayment()
-                        {
-                            Amount = transaction.Balance,
-                            Loan = loan
-                        };
-                        db.DuePayments.Add(duepayment);
+                //        DuePayment duepayment = new DuePayment()
+                //        {
+                //            Amount = transaction.Balance,
+                //            Loan = loan
+                //        };
+                //        db.DuePayments.Add(duepayment);
 
-                        db.SaveChanges();
-                        trans.Complete();
-                    }
-                    return RedirectToAction("Index");
-                }
-                catch(Exception ex)
-                { }
+                //        db.SaveChanges();
+                //        trans.Complete();
+                //    }
+                //    return RedirectToAction("Index");
+                //}
+                //catch(Exception ex)
+                //{ }
+
+
             }
 
             ViewBag.AssetId = new SelectList(db.Assets, "Id", "AssetName", loan.AssetId);

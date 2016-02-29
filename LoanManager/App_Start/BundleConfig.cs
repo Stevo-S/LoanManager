@@ -28,6 +28,9 @@ namespace LoanManager
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/gridmvc").Include("~/Scripts/gridmvc.min.js"));
+
+            // Bundle and minify custom scripts
+            bundles.Add(new ScriptBundle("~/bundles/custom").Include("~/Scripts/loans.js"));
         }
     }
 }
