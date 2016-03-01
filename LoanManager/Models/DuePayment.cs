@@ -21,5 +21,11 @@ namespace LoanManager.Models
         public bool IsPaid { get; set; }
 
         public virtual Loan Loan { get; set; }
+
+        public DuePayment()
+        {
+            IsPaid = false;
+            DueDate = DateTime.Now.AddMonths(1);
+        }
     }
 }

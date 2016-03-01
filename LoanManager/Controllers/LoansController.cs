@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using LoanManager.Models;
 using System.Transactions;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 
 namespace LoanManager.Controllers
 {
@@ -49,7 +51,7 @@ namespace LoanManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Principal,Interest,Date,Cleared,AssetId")] Loan loan)
+        public ActionResult Create([Bind(Include = "Id,Principal,Interest,Date,Cleared,AssetId,InitialInstallments")] Loan loan)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +87,54 @@ namespace LoanManager.Controllers
                 //}
                 //catch(Exception ex)
                 //{ }
+                loan.PendingInstallments = loan.InitialInstallments;
+                loan.Balance = loan.Principal + loan.Interest;
 
+                // Add corresponding transaction
+                var transaction = new Models.Transaction()
+                {
+                    Type = db.TransactionTypes.First(tt => tt.Description.Contains("OPEN")),
+                    Loan = loan,
+                    Balance = loan.Balance,
+                    Debit = loan.Balance,
+                    Details = "Loan Disbursment",
+                    Timestamp = DateTime.Now
+                };
+                db.Transactions.Add(transaction);
+
+                // Record the next due payment
+                var duePayment = new DuePayment()
+                {
+                    Loan = loan,
+                    Amount = loan.Balance / loan.PendingInstallments
+                };
+                db.DuePayments.Add(duePayment);
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException e)
+                {
+                    var errors = "";
+
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        errors += "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:" +
+                            eve.Entry.Entity.GetType().Name + eve.Entry.State + "\n";
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            errors += "- Property: \"{0}\", Value: \"{1}\", Error: \"{2}\"" +
+                            ve.PropertyName +
+                            eve.Entry.CurrentValues.GetValue<object>(ve.PropertyName) +
+                            ve.ErrorMessage + "\n";
+                        }
+                    }
+
+                    ViewBag.Errors = errors;
+                }
+
+                return RedirectToAction("Index");
 
             }
 

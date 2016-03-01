@@ -27,6 +27,11 @@ namespace LoanManager.Models
         [Required]
         public DateTime Timestamp { get; set; }
 
+        public Transaction()
+        {
+            Credit = Debit = 0;
+            Details = "";
+        }
 
         public virtual TransactionType Type { get; set; }
         public virtual Loan Loan { get; set; }

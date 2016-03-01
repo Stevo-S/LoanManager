@@ -32,9 +32,10 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2" for="numberOfPayments">Monthly Installments</label>
-            <div class="col-md-3">
-                <input type="number" max="24" min="1" class="form-control" id="numberOfPayments" />
+            @Html.LabelFor(model => model.InitialInstallments, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.InitialInstallments, new { htmlAttributes = new { @class = "form-control", min = "1" } })
+                @Html.ValidationMessageFor(model => model.InitialInstallments, "", new { @class = "text-danger" })
             </div>
         </div>
 

@@ -4,7 +4,7 @@ $(function () {
     $('input').change(calculateLoanDetails);
 
     function calculateLoanDetails() {
-        var payments = Number($('#numberOfPayments').val());
+        var payments = Number($('#InitialInstallments').val());
         if (!isNaN(payments)) {
 
             var principal = Number($('#Principal').val());
