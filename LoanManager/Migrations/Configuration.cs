@@ -26,13 +26,16 @@ namespace LoanManager.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
-            context.TransactionTypes.AddOrUpdate(
+            if (context.TransactionTypes.Count() < 3)
+            {
+                context.TransactionTypes.AddOrUpdate(
                 t => t.Id,
                 new Models.TransactionType() { Description = "OPENING BALANCE" },
                 new Models.TransactionType() { Description = "PAYMENT" },
                 new Models.TransactionType() { Description = "PENALTY" }
-            );
+                );
+            }
+
         }
     }
 }

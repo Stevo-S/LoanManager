@@ -23,6 +23,12 @@ namespace LoanManager.Models
         [Remote("IsAsset_Encumbered", "Validation")]
         public int AssetId { get; set; }
 
+        [DisplayName("Number of Installments")]
+        public int InitialInstallments { get; set; }
+        public int PendingInstallments { get; set; }
+
+        public decimal Balance { get; set; }
+
         [HiddenInput(DisplayValue = false)]
         public DateTime CreatedAt { get; set; }
         [HiddenInput(DisplayValue = false)]
