@@ -38,5 +38,13 @@ namespace LoanManager.Controllers
                 return Json(String.Format(CultureInfo.InvariantCulture, "The selected asset has been encumbered. Please select another asset"), JsonRequestBehavior.AllowGet);
             return Json(true, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult Is_AmountLoanable(decimal Principal, int AssetId)
+        {
+            var asset = db.Assets.Find(AssetId);
+            if(Principal > asset.Value/2)
+                return Json(String.Format(CultureInfo.InvariantCulture, "Invalid Principal amount. Please enter any value less than or equal to KES "+(asset.Value/2).ToString("N2")), JsonRequestBehavior.AllowGet);
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
     }
 }
