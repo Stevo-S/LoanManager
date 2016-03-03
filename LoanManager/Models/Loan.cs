@@ -13,6 +13,7 @@ namespace LoanManager.Models
         public int Id { get; set; }
         [Required]
         [DisplayFormat(DataFormatString = "{0:C0}")]
+        [Remote("Is_AmountLoanable", "Validation", AdditionalFields = "AssetId")]
         public decimal Principal { get; set; }
         [Required]
         [DisplayFormat(DataFormatString = "{0:C0}")]
