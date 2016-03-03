@@ -28,8 +28,7 @@ namespace LoanManager.Models
         public int PendingInstallments { get; set; }
 
         public decimal Balance { get; set; }
-
-        [HiddenInput(DisplayValue = false)]
+        
         public DateTime CreatedAt { get; set; }
         [HiddenInput(DisplayValue = false)]
         public DateTime ModifiedAt { get; set; }
