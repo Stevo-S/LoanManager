@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<LoanManager.Models.Borrower>
 
+@using LoanManager.CustomHelpers;
+
 @using GridMvc.Html
 @{
     ViewBag.Title = "Index";
@@ -29,12 +31,11 @@
         columns.Add()
         .Encoded(false)
         .Sanitized(false)
-        .RenderValueAs(o => new HtmlString(Html.ActionLink("Edit", "Edit", new { id = o.Id }).ToString() + " | " +
-                                        Html.ActionLink("Details", "Details", new { id = o.Id }).ToString() + " | " +
-                                        Html.ActionLink("Delete", "Delete", new { id = o.Id }).ToString()));
+        .RenderValueAs(o => new HtmlString(Html.AddBorrowerActionsMenu(o)));
+        columns.Add()
+        .Encoded(false)
+        .Sanitized(false)
+        .RenderValueAs(o => new HtmlString(Html.Raw("").ToString() ));
 
     }).WithPaging(10).Sortable(true)
 </div>
-
-  
-
