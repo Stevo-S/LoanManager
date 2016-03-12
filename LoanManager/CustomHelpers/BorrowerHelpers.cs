@@ -34,7 +34,7 @@ namespace LoanManager.CustomHelpers
             dropdownList.MergeAttribute("aria-labelledby", "borrowerActionMenu");
 
             var grantLoanLink = new TagBuilder("li");
-            grantLoanLink.InnerHtml = LinkExtensions.ActionLink(helper, "Grant Loan", "Create", "Borrowers", new { BorrowerId = borrower.Id }, null).ToHtmlString();
+            grantLoanLink.InnerHtml = LinkExtensions.ActionLink(helper, "Grant Loan", "Create", "Loans", new { BorrowerId = borrower.Id }, null).ToHtmlString();
 
             var addAssetLink = new TagBuilder("li");
             addAssetLink.InnerHtml = LinkExtensions.ActionLink(helper, "Add Asset", "Create", "Assets", new { BorrowerId = borrower.Id }, null).ToHtmlString();

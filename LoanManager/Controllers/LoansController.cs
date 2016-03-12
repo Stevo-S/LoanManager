@@ -40,9 +40,10 @@ namespace LoanManager.Controllers
         }
 
         // GET: Loans/Create
-        public ActionResult Create()
+        public ActionResult Create(int? BorrowerId)
         {
-            ViewBag.AssetId = new SelectList(db.Assets, "Id", "AssetName");
+            var assets = BorrowerId == null ? db.Assets : db.Assets.Where(a => a.BorrowerId == BorrowerId);
+            ViewBag.AssetId = new SelectList(assets, "Id", "AssetName");
             return View();
         }
 
