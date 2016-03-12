@@ -12,6 +12,10 @@ namespace LoanManager.CustomHelpers
     {
         public static string AddBorrowerActionsMenu(this HtmlHelper helper, Borrower borrower)
         {
+            // This method extends HtmlHelper
+            // What it does is take a Borrower instance and return a HTML dropdown menu,
+            // inside a button, with links to "Grant Loan", "Add Asset"
+            // as well as the "Delete", "Edit" and "Details" views of that instance
             var dropdownDiv = new TagBuilder("div");
             dropdownDiv.AddCssClass("dropdown");
             dropdownDiv.MergeAttribute("style", "color: gray");
