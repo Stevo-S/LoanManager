@@ -111,29 +111,8 @@ namespace LoanManager.Controllers
                 };
                 db.DuePayments.Add(duePayment);
 
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (DbEntityValidationException e)
-                {
-                    var errors = "";
-
-                    foreach (var eve in e.EntityValidationErrors)
-                    {
-                        errors += "Entity of type \"{0}\" in state \"{1}\" has the following validation errors:" +
-                            eve.Entry.Entity.GetType().Name + eve.Entry.State + "\n";
-                        foreach (var ve in eve.ValidationErrors)
-                        {
-                            errors += "- Property: \"{0}\", Value: \"{1}\", Error: \"{2}\"" +
-                            ve.PropertyName +
-                            eve.Entry.CurrentValues.GetValue<object>(ve.PropertyName) +
-                            ve.ErrorMessage + "\n";
-                        }
-                    }
-
-                    ViewBag.Errors = errors;
-                }
+                db.SaveChanges();
+                
 
                 return RedirectToAction("Index");
 
