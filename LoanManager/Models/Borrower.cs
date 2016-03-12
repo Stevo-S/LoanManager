@@ -13,7 +13,7 @@ namespace LoanManager.Models
         public int Id { get; set; }
         [Required]
         [Editable(false)]
-        [Index(IsUnique=true)]
+        [Index(IsUnique = true)]
         [Display(Name = "National ID")]
         [StringLength(10, MinimumLength = 5)]
         [Remote("IsNationalId_Usable", "Validation")]
@@ -59,7 +59,12 @@ namespace LoanManager.Models
     {
         public string Fullname
         {
-            get { return FirstName + " " + (MiddleName).Substring(0, 1).ToUpper() + ". " + LastName; }
+            get
+            {
+                return FirstName + " " 
+                    + (MiddleName == null ? "" : (MiddleName).Substring(0, 1).ToUpper() + ". ") 
+                    + LastName;
+            }
         }
     }
 }
