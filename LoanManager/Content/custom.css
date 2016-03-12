@@ -1,0 +1,7 @@
+﻿table.grid-table tr.grid-row-selected a {
+    color: black;
+}
+
+table.grid-table tr.grid-row-selected a:hover {
+    color: white;
+}

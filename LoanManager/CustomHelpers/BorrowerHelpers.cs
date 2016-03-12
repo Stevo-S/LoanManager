@@ -14,6 +14,7 @@ namespace LoanManager.CustomHelpers
         {
             var dropdownDiv = new TagBuilder("div");
             dropdownDiv.AddCssClass("dropdown");
+            dropdownDiv.MergeAttribute("style", "color: gray");
 
             var actionDropdownButton = new TagBuilder("button");
             actionDropdownButton.GenerateId("borrowerActionMenu");
