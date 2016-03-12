@@ -1,7 +1,9 @@
-﻿table.grid-table tr.grid-row-selected a {
+﻿/* Make sure the links on the dropdown menu in a selected Grid.Mvc row stand out*/
+table.grid-table tr.grid-row-selected a {
     color: black;
 }
 
+/* Change color to white to make it stand out of a blue background on hover */
 table.grid-table tr.grid-row-selected a:hover {
     color: white;
 }
