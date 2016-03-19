@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LoanManager.Models;
+using System.IO;
 
 namespace LoanManager.Controllers
 {
@@ -46,10 +47,12 @@ namespace LoanManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,NationalID,FirstName,MiddleName,LastName,Email,PhoneNumber1,PhoneNumber2,Address,CreatedAt,ModifiedAt")] Borrower borrower)
+        public ActionResult Create([Bind(Include = "Id,NationalID,FirstName,MiddleName,LastName,Email,PhoneNumber1,PhoneNumber2,Address,CreatedAt,ModifiedAt")] Borrower borrower, HttpPostedFileBase Photo)
         {
             if (ModelState.IsValid)
             {
+                SavePhoto(borrower, Photo);
+
                 borrower.CreatedAt = DateTime.Now;
                 borrower.ModifiedAt = DateTime.Now;
                 db.Borrowers.Add(borrower);
@@ -80,10 +83,12 @@ namespace LoanManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,NationalID,FirstName,MiddleName,LastName,Email,PhoneNumber1,PhoneNumber2,Address,CreatedAt,ModifiedAt")] Borrower borrower)
+        public ActionResult Edit([Bind(Include = "Id,NationalID,FirstName,MiddleName,LastName,Email,PhoneNumber1,PhoneNumber2,Address,CreatedAt,ModifiedAt")] Borrower borrower, HttpPostedFileBase Photo)
         {
             if (ModelState.IsValid)
             {
+                SavePhoto(borrower, Photo);
+
                 borrower.ModifiedAt = DateTime.Now;
                 db.Entry(borrower).State = EntityState.Modified;
                 db.SaveChanges();
@@ -125,6 +130,20 @@ namespace LoanManager.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private void SavePhoto(Borrower borrower, HttpPostedFileBase Photo)
+        {
+            if (Photo.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(Photo.FileName);
+                var photosFolder = "~/UploadedFiles/Borrower_Photos";
+                var path = Path.Combine(Server.MapPath(photosFolder), fileName);
+                Photo.SaveAs(path);
+                borrower.Photo = photosFolder + "/" + fileName;
+            }
+
+            return;
         }
     }
 }
