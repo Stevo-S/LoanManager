@@ -48,6 +48,9 @@ namespace LoanManager.Models
         [HiddenInput(DisplayValue = false)]
         public DateTime ModifiedAt { get; set; }
 
+        [StringLength(255)]
+        public string Photo { get; set; }
+
         public Borrower()
         {
             Assets = new List<Asset>();
@@ -55,6 +58,7 @@ namespace LoanManager.Models
 
         public virtual ICollection<Asset> Assets { get; set; }
     }
+
     public partial class Borrower
     {
         public string Fullname
