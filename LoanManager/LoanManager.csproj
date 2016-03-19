@@ -290,6 +290,10 @@
     <Compile Include="Migrations\201603180950588_AddBorrowerPhotoFilePath.Designer.cs">
       <DependentUpon>201603180950588_AddBorrowerPhotoFilePath.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603191325431_AddTransactionAttachments.cs" />
+    <Compile Include="Migrations\201603191325431_AddTransactionAttachments.Designer.cs">
+      <DependentUpon>201603191325431_AddTransactionAttachments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Asset.cs" />
@@ -299,6 +303,7 @@
     <Compile Include="Models\Loan.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Transaction.cs" />
+    <Compile Include="Models\TransactionAttachment.cs" />
     <Compile Include="Models\TransactionType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -409,6 +414,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="UploadedFiles\Borrower_Photos\" />
+    <Folder Include="UploadedFiles\Transaction_Attachments\" />
     <Folder Include="Views\Validation\" />
   </ItemGroup>
   <ItemGroup>
@@ -476,6 +482,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603180950588_AddBorrowerPhotoFilePath.resx">
       <DependentUpon>201603180950588_AddBorrowerPhotoFilePath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603191325431_AddTransactionAttachments.resx">
+      <DependentUpon>201603191325431_AddTransactionAttachments.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

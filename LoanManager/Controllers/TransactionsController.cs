@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LoanManager.Models;
+using System.IO;
 
 namespace LoanManager.Controllers
 {
@@ -49,10 +50,28 @@ namespace LoanManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TypeId,LoanId,Details,Credit,Debit,Balance,Timestamp")] Transaction transaction)
+        public ActionResult Create([Bind(Include = "Id,TypeId,LoanId,Details,Credit,Debit,Balance,Timestamp")] Transaction transaction, IEnumerable<HttpPostedFileBase> Attachments)
         {
             if (ModelState.IsValid)
             {
+                foreach(var attachment in Attachments)
+                {
+                    if (attachment.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(attachment.FileName);
+                        string attachmentsFolder = "~/UploadedFiles/Transaction_Attachments";
+                        var path = Path.Combine(Server.MapPath(attachmentsFolder), fileName);
+
+                        var transactionAttachment = new TransactionAttachment()
+                        {
+                            Path = attachmentsFolder + "/" + fileName,
+                            Transaction = transaction
+                        };
+
+                        attachment.SaveAs(path);
+                        db.TransactionAttachments.Add(transactionAttachment);
+                    }
+                }
                 transaction.Timestamp = DateTime.Now;
                 db.Transactions.Add(transaction);
                 db.SaveChanges();
