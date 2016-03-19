@@ -39,5 +39,6 @@ namespace LoanManager.Models
         public DbSet<TransactionType> TransactionTypes { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<DuePayment> DuePayments { get; set; }
+        public DbSet<TransactionAttachment> TransactionAttachments { get; set; }
     }
 }

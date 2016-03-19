@@ -31,9 +31,11 @@ namespace LoanManager.Models
         {
             Credit = Debit = 0;
             Details = "";
+            TransactionAttachments = new List<TransactionAttachment>();
         }
 
         public virtual TransactionType Type { get; set; }
         public virtual Loan Loan { get; set; }
+        public virtual ICollection<TransactionAttachment> TransactionAttachments { get; set; }
     }
 }

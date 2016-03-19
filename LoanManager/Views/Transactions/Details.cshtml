@@ -68,6 +68,24 @@
 
     </dl>
 </div>
+
+@if (Model.TransactionAttachments.Count() > 0)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Attachments for this transaction</h3>
+        </div>
+        <div class="panel-body">
+            @foreach (var attachment in Model.TransactionAttachments)
+            {
+                <a href="@Url.Content(attachment.Path)">
+                    @Path.GetFileName(attachment.Path)
+                </a>;
+            }
+        </div>
+    </div>
+}
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
