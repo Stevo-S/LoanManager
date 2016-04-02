@@ -10,11 +10,14 @@
     <h4>Borrower</h4>
     <hr />
 
-    <div>
-        <img src="@Url.Content(Model.Photo)" />
-    </div>
+        @if (Model.Photo != null)
+        {
+            <div>
+                <img src="@Url.Content(Model.Photo)" />
+                <hr />
+            </div>
+        }
 
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.NationalID)
