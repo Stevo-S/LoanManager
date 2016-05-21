@@ -35,7 +35,9 @@ namespace LoanManager
             bundles.Add(new StyleBundle("~/Content/customcss").Include("~/Content/custom.css"));
 
             // Bundle and minify custom scripts
-            bundles.Add(new ScriptBundle("~/bundles/custom").Include("~/Scripts/loans.js"));
+            bundles.Add(new ScriptBundle("~/bundles/custom").Include(
+                "~/Scripts/loans.js",
+                "~/Scripts/transactions.js"));
         }
     }
 }

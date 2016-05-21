@@ -1,5 +1,5 @@
 ﻿/* Make sure the links on the dropdown menu in a selected Grid.Mvc row stand out*/
-table.grid-table tr.grid-row-selected a {
+table.grid-table tr.grid-row-selected td li a {
     color: black;
 }
 

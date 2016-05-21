@@ -38,10 +38,34 @@ namespace LoanManager.Controllers
         }
 
         // GET: Transactions/Create
-        public ActionResult Create()
+        public ActionResult Create(int? loanId)
         {
-            ViewBag.LoanId = new SelectList(db.Loans, "Id", "Id");
             ViewBag.TypeId = new SelectList(db.TransactionTypes, "Id", "Description");
+
+            if (loanId != null)
+            {
+                var loan = db.Loans.Find(loanId);
+                if (loan != null)
+                {
+                    ViewBag.LoanId = new SelectList(db.Loans.Where(l => l.Id == loanId), "Id", "Id");
+                    ViewBag.CurrentBalance = loan.Balance;
+                    var transaction = new Transaction()
+                    {
+                        Loan = loan,
+                        Balance = loan.Balance,
+                        Credit = 0,
+                        Debit = 0
+                    };
+
+                    return View(transaction);
+                }
+                else
+                {
+                    return HttpNotFound();
+                }
+            }
+
+            ViewBag.LoanId = new SelectList(db.Loans, "Id", "Id");
             return View();
         }
 
@@ -56,7 +80,7 @@ namespace LoanManager.Controllers
             {
                 foreach(var attachment in Attachments)
                 {
-                    if (attachment.ContentLength > 0)
+                    if (attachment != null && attachment.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(attachment.FileName);
                         string attachmentsFolder = "~/UploadedFiles/Transaction_Attachments";
