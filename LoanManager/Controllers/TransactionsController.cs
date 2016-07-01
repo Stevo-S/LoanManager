@@ -64,9 +64,10 @@ namespace LoanManager.Controllers
                     return HttpNotFound();
                 }
             }
-
-            ViewBag.LoanId = new SelectList(db.Loans, "Id", "Id");
-            return View();
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
         }
 
         // POST: Transactions/Create
