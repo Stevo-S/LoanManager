@@ -24,6 +24,8 @@
     .Encoded(false)
     .Sanitized(false)
     .RenderValueAs(c => new HtmlString(Html.ActionLink(c.LoanId.ToString(), "Details", "Loans", new { id = c.LoanId }, null).ToString()));
+    columns.Add(c => c.Loan.Asset.AssetName).Titled("Asset");
+    columns.Add(c => c.Loan.Asset.Borrower.FirstName).Titled("Client");
     columns.Add(c => c.Debit).Format("{0:C0}").Titled("Debit");
     columns.Add(c => c.Credit).Format("{0:C0}").Titled("Credit");
     columns.Add(c => c.Balance).Format("{0:C0}").Titled("Loan Balance");
