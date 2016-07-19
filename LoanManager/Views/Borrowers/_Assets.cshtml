@@ -1,0 +1,45 @@
+﻿@model IEnumerable<LoanManager.Models.Asset>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">ASSETS</div>
+   
+    <!-- Table -->
+    <table class="table table-striped">
+        <tr>
+    <th>
+        @Html.DisplayName("Registration")
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Description)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.LogBookId)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Value)
+    </th>
+    <th></th>
+</tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegistrationNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LogBookId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Value)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", "Assets", new { id = item.Id }, new { @class = "btn btn-info btn-sm" })
+        </td>
+    </tr>
+}
+    </table>
+</div>

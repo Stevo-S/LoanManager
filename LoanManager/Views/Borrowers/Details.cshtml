@@ -6,128 +6,124 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>Borrower</h4>
+<div class="container">
+    <h4>Clients</h4>
     <hr />
 
-        @if (Model.Photo != null)
-        {
-            <div>
-                <img src="@Url.Content(Model.Photo)" />
-                <hr />
-            </div>
-        }
+    <div class="row">
+        <div class="col-md-4">
 
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NationalID)
-        </dt>
+            @if (Model.Photo != null)
+            {
+                <div>
+                    <img src="@Url.Content(Model.Photo)" width="256" height="256" />
+                </div>
+            }
 
-        <dd>
-            @Html.DisplayFor(model => model.NationalID)
-        </dd>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+        <div class="col-md-8">
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.NationalID)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MiddleName)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.NationalID)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MiddleName)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.FirstName)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.MiddleName)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.MiddleName)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber1)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber1)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber2)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber2)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PhoneNumber1)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.PhoneNumber1)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PhoneNumber2)
+                </dt>
 
-        <dt>
-            @Html.HiddenFor(model => model.CreatedAt)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.PhoneNumber2)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Address)
+                </dt>
 
-        <dt>
-            @Html.HiddenFor(model => model.ModifiedAt)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ModifiedAt)
-        </dd>
+                <dt>
+                    @Html.HiddenFor(model => model.CreatedAt)
+                </dt>
 
-    </dl>
+                <dd>
+                    @Html.DisplayFor(model => model.CreatedAt)
+                </dd>
+
+                <dt>
+                    @Html.HiddenFor(model => model.ModifiedAt)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ModifiedAt)
+                </dd>
+
+            </dl>
+        </div>
+    </div>
+
 </div>
 
-<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
-<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
-<script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
-<script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>
 
-<div>
-    @Html.Grid(Model.Assets).Columns(columns =>
-    {
-        columns.Add(c => c.Description).Titled("Description").Filterable(true);
-        columns.Add(c => c.RegistrationNo).Titled("RegistrationNo").Filterable(true);
-        columns.Add(c => c.LogBookId).Titled("LogBook").Filterable(true);
-        columns.Add(c => c.Value).Titled("Value").Format("{0:C0}").Filterable(true);
-        columns.Add(c => c.Borrower.Fullname).Titled("Owner").Filterable(true)
-        .Encoded(false)
-        .Sanitized(false)
-        .RenderValueAs(c => new HtmlString(Html.ActionLink(c.Borrower.Fullname, "Details", "Borrowers", new { id = c.BorrowerId }, null).ToString()));
-        columns.Add()
-        .Encoded(false)
-        .Sanitized(false)
-        .RenderValueAs(o => new HtmlString(Html.ActionLink("Edit", "Edit", new { id = o.Id }).ToString() + " | " +
-                                        Html.ActionLink("Details", "Details", new { id = o.Id }).ToString() + " | " +
-                                        Html.ActionLink("Delete", "Delete", new { id = o.Id }).ToString()));
-
-    })
-</div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("« Back to List", "Index", null, new { @class = "btn btn-info" })
+    @Html.ActionLink("Edit Client Details", "Edit", new { id = Model.Id }, new { @class = "btn btn-info" })
 </p>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-5">
+        @{ Html.RenderPartial("_Assets", Model.Assets); }
+    </div>
+    <div class="col-md-7">
+        @{ Html.RenderPartial("_Transactions", Model.Assets.SelectMany(a => a.Loans).SelectMany(l => l.Transactions).ToList()); }
+    </div>
+</div>
