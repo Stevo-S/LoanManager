@@ -121,6 +121,10 @@
             <span class="glyphicon glyphicon-edit"></span>
             Edit Client Details
         </a>
+        <a href="@Url.Action("Create", "Loans",new { BorrowerId = Model.Id })" class="btn btn-info">
+            <span class="glyphicon glyphicon-plus-sign"></span>
+            Grant New Loan
+        </a>
         <a href="@Url.Action("StatementPdf", new { id = Model.Id })" class="btn btn-info">
             <span class="glyphicon glyphicon-download"></span>
             Download Statement
