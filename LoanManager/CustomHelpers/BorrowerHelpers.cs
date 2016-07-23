@@ -65,5 +65,10 @@ namespace LoanManager.CustomHelpers
 
             return dropdownDiv.ToString();
         }
+
+        public static string BorrowerPhotoPath(this HtmlHelper helper, Borrower borrower)
+        {
+            return !string.IsNullOrEmpty(borrower.Photo) ? borrower.Photo : "~/Content/Images/default_client_photo.png";
+        }
     }
 }
