@@ -58,7 +58,7 @@ namespace LoanManager.Controllers
                 borrower.ModifiedAt = DateTime.Now;
                 db.Borrowers.Add(borrower);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = borrower.Id });
             }
 
             return View(borrower);
