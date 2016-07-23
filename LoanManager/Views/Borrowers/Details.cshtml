@@ -1,5 +1,6 @@
 ﻿@model LoanManager.Models.Borrower
 @using GridMvc.Html
+@using LoanManager.CustomHelpers
 @{
     ViewBag.Title = "Details";
 }
@@ -13,12 +14,9 @@
     <div class="row">
         <div class="col-md-4">
 
-            @if (Model.Photo != null)
-            {
                 <div>
-                    <img src="@Url.Content(Model.Photo)" width="256" height="256" />
+                    <img src="@Url.Content(Html.BorrowerPhotoPath(Model))" width="200" height="200" />
                 </div>
-            }
 
         </div>
 
