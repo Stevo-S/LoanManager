@@ -424,6 +424,7 @@
     <Content Include="Views\Borrowers\_Assets.cshtml" />
     <Content Include="Views\Borrowers\_Transactions.cshtml" />
     <Content Include="Views\Borrowers\Statement.cshtml" />
+    <Content Include="Views\Borrowers\_Loans.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

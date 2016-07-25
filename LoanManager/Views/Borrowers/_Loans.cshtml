@@ -1,0 +1,50 @@
+﻿@model IEnumerable<LoanManager.Models.Loan>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">ACTIVE LOANS</div>
+
+    <!-- Table -->
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayName("Asset")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Principal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Interest)
+            </th>
+            <th>
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Asset.AssetName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Principal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Interest)
+                </td>
+                <td>
+                    <a href="@Url.Action("Create", "Transactions", new { loanId = item.Id })" class="btn btn-info">
+                        <span class="glyphicon glyphicon-plus-sign"></span>
+                        New Transaction
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

@@ -12,7 +12,7 @@
     <hr />
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-2">
 
                 <div>
                     <img src="@Url.Content(Html.BorrowerPhotoPath(Model))" width="200" height="200" />
@@ -20,7 +20,7 @@
 
         </div>
 
-        <div class="col-md-8">
+        <div class="col-md-2">
 
             <dl class="dl-horizontal">
                 <dt>
@@ -104,6 +104,10 @@
                 </dd>
 
             </dl>
+        </div>
+
+        <div class="col-md-6 pull-right">
+            @{ Html.RenderPartial("_Loans", Model.Assets.SelectMany(a => a.Loans).Where(l => !l.Cleared)); }
         </div>
     </div>
 
