@@ -57,7 +57,7 @@ namespace LoanManager.Controllers
                 asset.ModifiedAt = DateTime.Now;
                 db.Assets.Add(asset);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Borrowers", new { id = asset.BorrowerId } );
             }
 
             ViewBag.BorrowerId = new SelectList(db.Borrowers, "Id", "NationalID", asset.BorrowerId);
