@@ -15,10 +15,10 @@ namespace LoanManager.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: CompanyProfiles
-        public ActionResult Index()
-        {
-            return View(db.CompanyProfiles.ToList());
-        }
+        //public ActionResult Index()
+        //{
+        //    return View(db.CompanyProfiles.ToList());
+        //}
 
         // GET: CompanyProfiles/Details/5
         public ActionResult Details(int? id)
@@ -36,27 +36,27 @@ namespace LoanManager.Controllers
         }
 
         // GET: CompanyProfiles/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
 
         // POST: CompanyProfiles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Logo,Name,PostOfficeBox,City,ProvinceStateCounty,Country")] CompanyProfile companyProfile)
-        {
-            if (ModelState.IsValid)
-            {
-                db.CompanyProfiles.Add(companyProfile);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "Id,Logo,Name,PostOfficeBox,City,ProvinceStateCounty,Country")] CompanyProfile companyProfile)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.CompanyProfiles.Add(companyProfile);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View(companyProfile);
-        }
+        //    return View(companyProfile);
+        //}
 
         // GET: CompanyProfiles/Edit/5
         public ActionResult Edit(int? id)
@@ -84,36 +84,36 @@ namespace LoanManager.Controllers
             {
                 db.Entry(companyProfile).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = companyProfile.Id});
             }
             return View(companyProfile);
         }
 
         // GET: CompanyProfiles/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CompanyProfile companyProfile = db.CompanyProfiles.Find(id);
-            if (companyProfile == null)
-            {
-                return HttpNotFound();
-            }
-            return View(companyProfile);
-        }
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    CompanyProfile companyProfile = db.CompanyProfiles.Find(id);
+        //    if (companyProfile == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(companyProfile);
+        //}
 
         // POST: CompanyProfiles/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            CompanyProfile companyProfile = db.CompanyProfiles.Find(id);
-            db.CompanyProfiles.Remove(companyProfile);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    CompanyProfile companyProfile = db.CompanyProfiles.Find(id);
+        //    db.CompanyProfiles.Remove(companyProfile);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {

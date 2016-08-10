@@ -64,8 +64,10 @@
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
+        <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-info">
+            <span class="glyphicon glyphicon-edit"></span>
+            Edit Company Profile
+        </a>
     </p>
 </body>
 </html>
