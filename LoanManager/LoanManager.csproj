@@ -207,6 +207,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AssetsController.cs" />
     <Compile Include="Controllers\BorrowersController.cs" />
+    <Compile Include="Controllers\CompanyProfilesController.cs" />
     <Compile Include="Controllers\DuePaymentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoansController.cs" />
@@ -299,10 +300,15 @@
     <Compile Include="Migrations\201603191325431_AddTransactionAttachments.Designer.cs">
       <DependentUpon>201603191325431_AddTransactionAttachments.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608081802244_AddCompanyProfile.cs" />
+    <Compile Include="Migrations\201608081802244_AddCompanyProfile.Designer.cs">
+      <DependentUpon>201608081802244_AddCompanyProfile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Asset.cs" />
     <Compile Include="Models\Borrower.cs" />
+    <Compile Include="Models\CompanyProfile.cs" />
     <Compile Include="Models\DuePayment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Loan.cs" />
@@ -425,6 +431,11 @@
     <Content Include="Views\Borrowers\_Transactions.cshtml" />
     <Content Include="Views\Borrowers\Statement.cshtml" />
     <Content Include="Views\Borrowers\_Loans.cshtml" />
+    <Content Include="Views\CompanyProfiles\Create.cshtml" />
+    <Content Include="Views\CompanyProfiles\Delete.cshtml" />
+    <Content Include="Views\CompanyProfiles\Details.cshtml" />
+    <Content Include="Views\CompanyProfiles\Edit.cshtml" />
+    <Content Include="Views\CompanyProfiles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -500,6 +511,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603191325431_AddTransactionAttachments.resx">
       <DependentUpon>201603191325431_AddTransactionAttachments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608081802244_AddCompanyProfile.resx">
+      <DependentUpon>201608081802244_AddCompanyProfile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
