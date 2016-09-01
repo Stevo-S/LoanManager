@@ -58,6 +58,15 @@
                 </div>
             </div>
 
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Slogan, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Slogan, new { htmlAttributes = new { @class = "form-control", rows = "8" } })
+                    @Html.ValidationMessageFor(model => model.Slogan, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
             <div class="form-group">
                 <label for="Logo" class="control-label col-md-2">Logo </label>
                 <div class="col-md-4">

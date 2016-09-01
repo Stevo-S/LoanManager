@@ -305,6 +305,10 @@
     <Compile Include="Migrations\201608081802244_AddCompanyProfile.Designer.cs">
       <DependentUpon>201608081802244_AddCompanyProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609011858554_AddSloganToCompanyProfile.cs" />
+    <Compile Include="Migrations\201609011858554_AddSloganToCompanyProfile.Designer.cs">
+      <DependentUpon>201609011858554_AddSloganToCompanyProfile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Asset.cs" />
@@ -519,6 +523,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608081802244_AddCompanyProfile.resx">
       <DependentUpon>201608081802244_AddCompanyProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609011858554_AddSloganToCompanyProfile.resx">
+      <DependentUpon>201609011858554_AddSloganToCompanyProfile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

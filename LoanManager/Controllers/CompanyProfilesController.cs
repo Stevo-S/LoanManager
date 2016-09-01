@@ -79,7 +79,7 @@ namespace LoanManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Logo,Name,PostOfficeBox,City,ProvinceStateCounty,Country")] CompanyProfile companyProfile, HttpPostedFileBase Logo)
+        public ActionResult Edit([Bind(Include = "Id,Logo,Name,PostOfficeBox,City,ProvinceStateCounty,Country,Slogan")] CompanyProfile companyProfile, HttpPostedFileBase Logo)
         {
             if (ModelState.IsValid)
             {

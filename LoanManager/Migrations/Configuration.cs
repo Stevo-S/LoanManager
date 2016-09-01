@@ -44,7 +44,8 @@ namespace LoanManager.Migrations
                         City = "Nairobi",
                         ProvinceStateCounty = "Nairobi",
                         PostOfficeBox = "12345",
-                        Country = "Kenya"
+                        Country = "Kenya",
+                        Slogan = "Your catchy slogan goes here."
                     }
                     );
             }

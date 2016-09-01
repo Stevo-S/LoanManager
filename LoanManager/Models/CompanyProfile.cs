@@ -27,5 +27,9 @@ namespace LoanManager.Models
 
         [StringLength(50)]
         public string Country { get; set; }
+
+        [StringLength(256)]
+        [DataType(DataType.MultilineText)]
+        public string Slogan { get; set; }
     }
 }
