@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using LoanManager.Models;
 using System.IO;
 using Rotativa;
+using LoanManager.ViewModels;
 
 namespace LoanManager.Controllers
 {
@@ -101,12 +102,19 @@ namespace LoanManager.Controllers
         // Print Customer Statement
         public ActionResult StatementPdf(int id)
         {
+            ViewBag.CompanyProfile = db.CompanyProfiles.First();
             return new ActionAsPdf("Statement", new { borrowerId = id }) { FileName = db.Borrowers.Find(id).LastName + "_Statement.pdf" };
         }
 
         public ActionResult Statement(int borrowerId)
         {
-            return View(db.Borrowers.Find(borrowerId).Assets.SelectMany(a => a.Loans).SelectMany(l => l.Transactions).ToList());
+            var transactionsViewModel = new TransactionsViewModel
+            {
+                Borrower = db.Borrowers.Find(borrowerId),
+                Transactions = db.Borrowers.Find(borrowerId).Assets.SelectMany(a => a.Loans).SelectMany(l => l.Transactions)
+            };
+            return View(transactionsViewModel);
+            //return View(db.Borrowers.Find(borrowerId).Assets.SelectMany(a => a.Loans).SelectMany(l => l.Transactions).ToList());
         }
         // GET: Borrowers/Delete/5
         public ActionResult Delete(int? id)

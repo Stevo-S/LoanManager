@@ -1,0 +1,37 @@
+﻿@model LoanManager.Models.CompanyProfile
+@using LoanManager.CustomHelpers
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <div>
+                <img src="@Url.Content(Html.CompanyLogoPath(Model))" width="256" height="128" />
+            </div>
+        </div>
+        <div class="col-md-2 pull-right">
+            <dl>
+
+                <dd>
+                    @Html.DisplayFor(m => m.Name),
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(m => m.PostOfficeBox),
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(m => m.City),
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(m => m.ProvinceStateCounty),
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(m => m.Country).
+                </dd>
+
+            </dl>
+        </div>
+    </div>
+</div>

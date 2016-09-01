@@ -43,6 +43,7 @@ namespace LoanManager.Migrations
                         Name = "The Company",
                         City = "Nairobi",
                         ProvinceStateCounty = "Nairobi",
+                        PostOfficeBox = "12345",
                         Country = "Kenya"
                     }
                     );

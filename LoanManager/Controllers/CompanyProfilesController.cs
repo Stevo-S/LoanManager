@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LoanManager.Models;
+using System.IO;
 
 namespace LoanManager.Controllers
 {
@@ -78,15 +79,31 @@ namespace LoanManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Logo,Name,PostOfficeBox,City,ProvinceStateCounty,Country")] CompanyProfile companyProfile)
+        public ActionResult Edit([Bind(Include = "Id,Logo,Name,PostOfficeBox,City,ProvinceStateCounty,Country")] CompanyProfile companyProfile, HttpPostedFileBase Logo)
         {
             if (ModelState.IsValid)
             {
+                SavePhoto(companyProfile, Logo);
+
                 db.Entry(companyProfile).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Details", new { id = companyProfile.Id});
+                return RedirectToAction("Details", new { id = companyProfile.Id });
             }
             return View(companyProfile);
+        }
+
+        private void SavePhoto(CompanyProfile companyProfile, HttpPostedFileBase logo)
+        {
+            if (logo != null && logo.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(logo.FileName);
+                var logosFolder = "~/UploadedFiles/Company_Logos";
+                var path = Path.Combine(Server.MapPath(logosFolder), fileName);
+                logo.SaveAs(path);
+                companyProfile.Logo = logosFolder + "/" + fileName;
+            }
+
+            return;
         }
 
         // GET: CompanyProfiles/Delete/5

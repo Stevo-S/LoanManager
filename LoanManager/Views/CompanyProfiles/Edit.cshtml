@@ -19,14 +19,6 @@
             @Html.HiddenFor(model => model.Id)
     
             <div class="form-group">
-                @Html.LabelFor(model => model.Logo, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Logo, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Logo, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
                 @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
@@ -51,7 +43,7 @@
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.ProvinceStateCounty, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.ProvinceStateCounty, "Province/State/County",htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.ProvinceStateCounty, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.ProvinceStateCounty, "", new { @class = "text-danger" })
@@ -65,7 +57,14 @@
                     @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
+            <div class="form-group">
+                <label for="Logo" class="control-label col-md-2">Logo </label>
+                <div class="col-md-4">
+                    <input type="file" name="Logo" id="Logo" accept="image/*" />
+                </div>
+            </div>
+
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-2">
                     <input type="submit" value="Save" class="btn btn-info" />

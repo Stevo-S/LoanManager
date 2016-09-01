@@ -216,6 +216,7 @@
     <Compile Include="Controllers\TransactionTypesController.cs" />
     <Compile Include="Controllers\ValidationController.cs" />
     <Compile Include="CustomHelpers\BorrowerHelpers.cs" />
+    <Compile Include="CustomHelpers\CompanyProfileHelpers.cs" />
     <Compile Include="CustomHelpers\LoansHelpers.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -318,6 +319,7 @@
     <Compile Include="Models\TransactionType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\TransactionsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -325,6 +327,7 @@
     <Content Include="Content\custom.css" />
     <Content Include="Content\Gridmvc.css" />
     <Content Include="Content\Images\default_client_photo.png" />
+    <Content Include="Content\Images\default_company_logo.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -436,10 +439,12 @@
     <Content Include="Views\CompanyProfiles\Details.cshtml" />
     <Content Include="Views\CompanyProfiles\Edit.cshtml" />
     <Content Include="Views\CompanyProfiles\Index.cshtml" />
+    <Content Include="Views\CompanyProfiles\_Letterhead.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="UploadedFiles\Borrower_Photos\" />
+    <Folder Include="UploadedFiles\Company_Logos\" />
     <Folder Include="UploadedFiles\Transaction_Attachments\" />
     <Folder Include="Views\Validation\" />
   </ItemGroup>
