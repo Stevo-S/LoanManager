@@ -26,14 +26,28 @@ namespace LoanManager.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-            if (context.TransactionTypes.Count() < 3)
-            {
-                context.TransactionTypes.AddOrUpdate(
-                t => t.Id,
+
+            context.TransactionTypes.AddOrUpdate(
+                t => t.Description,
                 new Models.TransactionType() { Description = "OPENING BALANCE" },
                 new Models.TransactionType() { Description = "PAYMENT" },
                 new Models.TransactionType() { Description = "PENALTY" }
-                );
+            );
+
+            // Seed with default company profile
+            if (!context.CompanyProfiles.Any())
+            {
+                context.CompanyProfiles.AddOrUpdate(c => c.Name,
+                    new Models.CompanyProfile()
+                    {
+                        Name = "The Company",
+                        City = "Nairobi",
+                        ProvinceStateCounty = "Nairobi",
+                        PostOfficeBox = "12345",
+                        Country = "Kenya",
+                        Slogan = "Your catchy slogan goes here."
+                    }
+                    );
             }
 
         }

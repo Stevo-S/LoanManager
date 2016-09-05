@@ -1,4 +1,5 @@
-﻿@model IEnumerable<LoanManager.Models.Transaction>
+﻿@model LoanManager.ViewModels.TransactionsViewModel
+@using LoanManager.Models;
 @{
     Layout = null;
 }
@@ -12,92 +13,99 @@
     @Styles.Render("~/Content/css")
 </head>
 <body>
-    <div> 
-        <h1>STATEMENT OF ACCOUNT</h1>
+    <div class="container">
+        @{ Html.RenderPartial("~/Views/CompanyProfiles/_Letterhead.cshtml", Model.Company); }
+        <hr />
+        <div>
+            <h1>STATEMENT OF ACCOUNT</h1>
+        </div>
+
+        @if (Model.Transactions.Any())
+        {
+            <div class="col-md-8">
+
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Borrower.Fullname)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Borrower.Fullname)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Borrower.NationalID)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Borrower.NationalID)
+                    </dd>
+
+                </dl>
+            </div>
+
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">RECENT TRANSACTIONS</div>
+
+                <!-- Table -->
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Transactions.First().Timestamp)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Transactions.First().Type)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Transactions.First().Details)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Transactions.First().Debit)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Transactions.First().Credit)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Transactions.First().Balance)
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model.Transactions)
+                {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Timestamp)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Type.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Details)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Debit)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Credit)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Balance)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="jumbotron">
+                <h1>No Records Found</h1>
+            </div>
+        }
     </div>
 
-    @if (Model.Any())
-    {
-        <div class="col-md-8">
-
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Loan.Asset.Borrower.Fullname)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.First().Loan.Asset.Borrower.Fullname)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Loan.Asset.Borrower.NationalID)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.First().Loan.Asset.Borrower.NationalID)
-                </dd>
-
-            </dl>
-        </div>
-
-
-        <div class="panel panel-primary">
-            <div class="panel-heading">RECENT TRANSACTIONS</div>
-
-            <!-- Table -->
-            <table class="table table-striped">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Timestamp)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Type)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Details)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Debit)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Credit)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Balance)
-                    </th>
-                </tr>
-
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Timestamp)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Type.Description)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Details)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Debit)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Credit)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Balance)
-                        </td>
-                    </tr>
-                }
-            </table>
-        </div>
-    }
-    else
-    {
-        <div class="jumbotron">
-            <h1>No Records Found</h1>
-        </div>
-    }
+    <hr />
+    <p style="font-style: italic; text-align: center"><strong>@Html.DisplayFor(model => model.Company.Slogan)</strong></p>
 </body>
 </html>
