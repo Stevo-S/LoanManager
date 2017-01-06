@@ -31,6 +31,9 @@ namespace LoanManager
             bundles.Add(new ScriptBundle("~/bundles/gridmvc").Include("~/Scripts/gridmvc.min.js"));
             bundles.Add(new StyleBundle("~/Content/gridmvc").Include("~/Content/Gridmvc.css"));
 
+            // Include Font-Awesome
+            bundles.Add(new StyleBundle("~/Content/font_awesome").Include("~/Content/font-awesome.css"));
+
             // custom stylesheet
             bundles.Add(new StyleBundle("~/Content/customcss").Include("~/Content/custom.css"));
 
