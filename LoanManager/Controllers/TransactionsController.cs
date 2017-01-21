@@ -100,7 +100,8 @@ namespace LoanManager.Controllers
                 transaction.Timestamp = DateTime.Now;
                 db.Transactions.Add(transaction);
                 db.SaveChanges();
-                return RedirectToAction("Details", "Borrowers", new { id = transaction.Loan.Asset.BorrowerId });
+                var loan = db.Loans.Find(transaction.LoanId);
+                return RedirectToAction("Details", "Borrowers", new { id = loan.Asset.BorrowerId });
             }
 
             ViewBag.LoanId = new SelectList(db.Loans, "Id", "Id", transaction.LoanId);
