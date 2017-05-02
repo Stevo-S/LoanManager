@@ -53,7 +53,10 @@ namespace LoanManager.Controllers
         {
             if (ModelState.IsValid)
             {
-                SavePhoto(borrower, Photo);
+                if (Photo != null)
+                {
+                    SavePhoto(borrower, Photo);
+                }
 
                 borrower.CreatedAt = DateTime.Now;
                 borrower.ModifiedAt = DateTime.Now;
