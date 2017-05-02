@@ -6,8 +6,8 @@ $(function () {
     $('#TypeId').change(toggleCreditDebit);
 
     // Calculate new loan balance when credit/debit values change
-    $('#Debit').change(calculateLoanBalance);
-    $('#Credit').change(calculateLoanBalance);
+    //$('#Debit').change(calculateLoanBalance);
+    //$('#Credit').change(calculateLoanBalance);
 
     // Disable credit or debit input
     // depending on whether transaction is penalty or not
@@ -28,13 +28,19 @@ $(function () {
         }
     }
 
-    // Calculate new loan balance
-    function calculateLoanBalance()
-    {
-        var currentBalance = parseInt($('#currentBalance').val());
-        var credit = parseFloat($('#Credit').val());
-        var debit = parseFloat($('#Debit').val());
 
-        $('#Balance').val(currentBalance - credit + debit);
+    function transactionViewModel() {
+        var self = this;
+        self.credit = ko.observable('0.00');
+        self.debit = ko.observable('0.00');
+        self.currentBalance = parseInt($('#currentBalance').val());
+        self.newBalance = ko.computed(function () {
+            // calculate loan balance based on credit/debit input values
+            var balance = self.currentBalance - parseFloat(self.credit()) + parseFloat(self.debit());
+            return isNaN(balance) ? self.currentBalance : balance;
+        }, self);
+
     }
+
+    ko.applyBindings(new transactionViewModel());
 });

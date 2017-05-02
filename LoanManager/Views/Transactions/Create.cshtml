@@ -43,7 +43,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Credit, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Credit, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Credit, new { htmlAttributes = new { @class = "form-control", data_bind = "textInput: credit" } })
                         @Html.ValidationMessageFor(model => model.Credit, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Debit, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Debit, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Debit, new { htmlAttributes = new { @class = "form-control", data_bind = "textInput: debit" } })
                         @Html.ValidationMessageFor(model => model.Debit, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Balance, "New Balance", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Balance, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                        @Html.EditorFor(model => model.Balance, new { htmlAttributes = new { @class = "form-control", @readonly = "true", data_bind = "value: newBalance" } })
                         @Html.ValidationMessageFor(model => model.Balance, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -97,14 +97,14 @@
             @{ Html.RenderPartial("~/Views/Borrowers/_BorrowerDetails.cshtml", Model.Loan.Asset.Borrower); }
 
         </div>
-        
+
         <div class="row">
             <h4>Asset</h4>
             <hr />
             @{ Html.RenderPartial("~/Views/Assets/_AssetDetails.cshtml", Model.Loan.Asset); }
 
         </div>
-        
+
     </div>
 </div>
 
@@ -114,4 +114,6 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/knockoutjs")
+    @Scripts.Render("~/Scripts/transactions.js")
 }
