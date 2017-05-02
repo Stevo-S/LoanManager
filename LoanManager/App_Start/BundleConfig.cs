@@ -37,10 +37,13 @@ namespace LoanManager
             // custom stylesheet
             bundles.Add(new StyleBundle("~/Content/customcss").Include("~/Content/custom.css"));
 
+            // Use KnockoutJS
+            bundles.Add(new ScriptBundle("~/bundles/knockoutjs").Include(
+                       "~/Scripts/knockout-{version}.js"));
+
             // Bundle and minify custom scripts
-            bundles.Add(new ScriptBundle("~/bundles/custom").Include(
-                "~/Scripts/loans.js",
-                "~/Scripts/transactions.js"));
+            bundles.Add(new ScriptBundle("~/bundles/transactions").Include("~/Scripts/transactions.js"));
+            bundles.Add(new ScriptBundle("~/bundles/loans").Include("~/Scripts/loans.js"));
         }
     }
 }
